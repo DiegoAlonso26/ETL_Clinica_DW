@@ -11,8 +11,8 @@
   DTS:LocaleID="10250"
   DTS:ObjectName="Flujo_OLTP"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{0A4E1CB4-B61B-452D-AE90-7409ECF3AE33}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{293EA040-F8B4-4E03-B272-9F6EFBB226B5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -7760,16 +7760,16 @@ where [refTable].[nombre] = ? and [refTable].[edad] = ? and [refTable].[genero] 
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="189,42"
-          Id="Package\Limpieza datos previos\Limpiar previa de datos"
-          TopLeft="47.5,33" />
+          Size="167,42"
+          Id="Package\Carga tablas hijas\Carga Tablas Hijas"
+          TopLeft="33,10" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="281,151"
-          Size="281,194"
-          Id="Package\Limpieza datos previos"
-          TopLeft="108,90" />
+          PanelSize="305,152"
+          Size="305,195"
+          Id="Package\Carga tablas hijas"
+          TopLeft="881,430" />
         <NodeLayout
           Size="175,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres"
@@ -7781,6 +7781,17 @@ where [refTable].[nombre] = ? and [refTable].[edad] = ? and [refTable].[genero] 
           Size="298,200"
           Id="Package\Carga tablas padres"
           TopLeft="475,240" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Limpieza datos previos\Limpiar previa de datos"
+          TopLeft="47.5,33" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="281,151"
+          Size="281,194"
+          Id="Package\Limpieza datos previos"
+          TopLeft="108,90" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="389,187">
@@ -7815,17 +7826,6 @@ where [refTable].[nombre] = ? and [refTable].[edad] = ? and [refTable].[genero] 
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Carga tablas hijas\Carga Tablas Hijas"
-          TopLeft="33,10" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="305,152"
-          Size="305,195"
-          Id="Package\Carga tablas hijas"
-          TopLeft="881,430" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
           TopLeft="773,340">
@@ -8015,7 +8015,9 @@ where [refTable].[nombre] = ? and [refTable].[edad] = ? and [refTable].[genero] 
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8037,7 +8039,9 @@ where [refTable].[nombre] = ? and [refTable].[edad] = ? and [refTable].[genero] 
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8071,7 +8075,9 @@ where [refTable].[nombre] = ? and [refTable].[edad] = ? and [refTable].[genero] 
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8142,55 +8148,55 @@ where [refTable].[nombre] = ? and [refTable].[edad] = ? and [refTable].[genero] 
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="196.8,41.6"
+          Size="197,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Duplicado medicamentos"
           TopLeft="827,331" />
         <NodeLayout
-          Size="160,41.6"
+          Size="160,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Insertar doctores"
           TopLeft="262,539" />
         <NodeLayout
-          Size="147.2,41.6"
+          Size="147,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Archivo Clinica"
           TopLeft="428,20" />
         <NodeLayout
-          Size="191.2,41.6"
+          Size="191,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Agregando Especialidad"
           TopLeft="243,433" />
         <NodeLayout
-          Size="164,41.6"
+          Size="164,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Insertar pacientes"
           TopLeft="41,400" />
         <NodeLayout
-          Size="175.2,43.2"
+          Size="175,43"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Duplicado hospitales"
           TopLeft="546,351" />
         <NodeLayout
-          Size="183.2,47.2"
+          Size="183,47"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Eliminando duplicados"
           TopLeft="29,311" />
         <NodeLayout
-          Size="166.4,41.6"
+          Size="166,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Insertar hospitales"
           TopLeft="558,560" />
         <NodeLayout
-          Size="164,41.6"
+          Size="164,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Limpieza de datos"
           TopLeft="421,108" />
         <NodeLayout
-          Size="172.8,41.6"
+          Size="173,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Copia datos Limpios"
           TopLeft="427,206" />
         <NodeLayout
-          Size="172.8,41.6"
+          Size="173,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Duplicados doctores"
           TopLeft="254,338" />
         <NodeLayout
-          Size="188,41.6"
+          Size="188,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Insertar medicamentos"
           TopLeft="841,436" />
         <NodeLayout
-          Size="217.6,41.6"
+          Size="218,42"
           Id="Package\Carga tablas padres\Carga Tablas Padres\Agregando ciudad y direccion"
           TopLeft="537,462" />
         <EdgeLayout

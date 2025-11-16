@@ -11,8 +11,8 @@
   DTS:LocaleID="10250"
   DTS:ObjectName="Flujo_DM"
   DTS:PackageType="5"
-  DTS:VersionBuild="50"
-  DTS:VersionGUID="{4DE765D5-ACFF-4068-941B-99D8C23C73B0}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{0FB722D8-F0C5-416D-A64F-227009F56C97}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2922,7 +2922,7 @@ where [refTable].[doctor_bk] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
-                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\905:invalid};</property>
+                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\907:invalid};</property>
                     <property
                       dataType="System.Int32"
                       description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
@@ -4869,7 +4869,7 @@ where [refTable].[paciente_bk] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
-                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Paciente\906:invalid};</property>
+                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Paciente\908:invalid};</property>
                     <property
                       dataType="System.Int32"
                       description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
@@ -5826,6 +5826,1356 @@ FROM
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{1A5C9501-AA3C-4B94-ABFA-4DDABA58AD9D}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DF_Cargar_F_Consulta"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+                  description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+                  name="Buscar Doctor"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DW].[D_Doctor]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DW].[D_Doctor]) [refTable]
+where [refTable].[doctor_bk] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de caché de la tabla de búsqueda."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indica si se debe hacer referencia a metadatos en formato XML."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id_doctor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_doctor" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="doctor_bk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[doctor_bk]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Inputs[Entrada de búsqueda]"
+                      name="Entrada de búsqueda">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Inputs[Entrada de búsqueda].Columns[doctor_bk]"
+                          cachedDataType="i4"
+                          cachedName="doctor_bk"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[doctor_bk]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">doctor_bk</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de entradas coincidentes de búsqueda]"
+                      errorOrTruncationOperation="Búsqueda"
+                      exclusionGroup="1"
+                      name="Salida de entradas coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Doctor]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copiar columna"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Doctor]"
+                          name="SK_Doctor"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn">id_doctor</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                      description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en 'Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes'."
+                      exclusionGroup="1"
+                      name="Salida de entradas no coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Inputs[Entrada de búsqueda]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de error de búsqueda]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+                  description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+                  name="Buscar Especialidad"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DW].[D_Especialidad]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DW].[D_Especialidad]) [refTable]
+where [refTable].[especialidad] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de caché de la tabla de búsqueda."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indica si se debe hacer referencia a metadatos en formato XML."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id_especialidad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="especialidad" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="especialidad_bk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[especialidad_nombre]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Inputs[Entrada de búsqueda]"
+                      name="Entrada de búsqueda">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Inputs[Entrada de búsqueda].Columns[especialidad_nombre]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="especialidad_nombre"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[especialidad_nombre]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">especialidad</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de entradas coincidentes de búsqueda]"
+                      errorOrTruncationOperation="Búsqueda"
+                      exclusionGroup="1"
+                      name="Salida de entradas coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_especialidad]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copiar columna"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_especialidad]"
+                          name="SK_especialidad"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn">id_especialidad</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                      description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en 'Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes'."
+                      exclusionGroup="1"
+                      name="Salida de entradas no coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Inputs[Entrada de búsqueda]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de error de búsqueda]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+                  description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+                  name="Buscar Hospital"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DW].[D_Hospital]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DW].[D_Hospital]) [refTable]
+where [refTable].[hospital_bk] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de caché de la tabla de búsqueda."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indica si se debe hacer referencia a metadatos en formato XML."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id_hospital" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_hospital" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="hospital_bk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[hospital_bk]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Inputs[Entrada de búsqueda]"
+                      name="Entrada de búsqueda">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Inputs[Entrada de búsqueda].Columns[hospital_bk]"
+                          cachedDataType="i4"
+                          cachedName="hospital_bk"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[hospital_bk]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">hospital_bk</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de entradas coincidentes de búsqueda]"
+                      errorOrTruncationOperation="Búsqueda"
+                      exclusionGroup="1"
+                      name="Salida de entradas coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Hospital]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copiar columna"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Hospital]"
+                          name="SK_Hospital"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn">id_hospital</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                      description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en 'Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes'."
+                      exclusionGroup="1"
+                      name="Salida de entradas no coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Inputs[Entrada de búsqueda]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de error de búsqueda]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+                  description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+                  name="Buscar Paciente"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DW].[D_Paciente]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DW].[D_Paciente]) [refTable]
+where [refTable].[paciente_bk] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de caché de la tabla de búsqueda."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indica si se debe hacer referencia a metadatos en formato XML."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id_paciente" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="edad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="genero" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="paciente_bk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[paciente_bk]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Inputs[Entrada de búsqueda]"
+                      name="Entrada de búsqueda">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Inputs[Entrada de búsqueda].Columns[paciente_bk]"
+                          cachedDataType="i4"
+                          cachedName="paciente_bk"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[paciente_bk]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">paciente_bk</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de entradas coincidentes de búsqueda]"
+                      errorOrTruncationOperation="Búsqueda"
+                      exclusionGroup="1"
+                      name="Salida de entradas coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Paciente]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copiar columna"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Paciente]"
+                          name="SK_Paciente"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn">id_paciente</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                      description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en 'Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes'."
+                      exclusionGroup="1"
+                      name="Salida de entradas no coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Inputs[Entrada de búsqueda]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de error de búsqueda]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+                  description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+                  name="Búsqueda"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DW].[D_Tiempo]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DW].[D_Tiempo]) [refTable]
+where [refTable].[idT] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de caché de la tabla de búsqueda."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indica si se debe hacer referencia a metadatos en formato XML."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="idT" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="fecha_admision" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dia" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="mes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="anio" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                      name="ParameterMap">#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de columna derivada].Columns[idT_Calculado]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Inputs[Entrada de búsqueda]"
+                      name="Entrada de búsqueda">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Inputs[Entrada de búsqueda].Columns[idT_Calculado]"
+                          cachedDataType="i4"
+                          cachedName="idT_Calculado"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de columna derivada].Columns[idT_Calculado]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">idT</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Outputs[Salida de entradas coincidentes de búsqueda]"
+                      errorOrTruncationOperation="Búsqueda"
+                      exclusionGroup="1"
+                      name="Salida de entradas coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Inputs[Entrada de búsqueda]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                      description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en 'Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes'."
+                      exclusionGroup="1"
+                      name="Salida de entradas no coincidentes de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Inputs[Entrada de búsqueda]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Outputs[Salida de error de búsqueda]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de búsqueda"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+                  name="Columna derivada"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Inputs[Entrada de columna derivada]"
+                      description="Entrada en la transformación Columna derivada"
+                      name="Entrada de columna derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Inputs[Entrada de columna derivada].Columns[fecha_admision]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="fecha_admision"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[fecha_admision]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de columna derivada]"
+                      description="Salida predeterminada de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      name="Salida de columna derivada"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de columna derivada].Columns[idT_Calculado]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de columna derivada].Columns[idT_Calculado]"
+                          name="idT_Calculado"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">(DT_I4)([YEAR]((DT_DBDATE)#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[fecha_admision]}) * 10000 + [MONTH]((DT_DBDATE)#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[fecha_admision]}) * 100 + [DAY]((DT_DBDATE)#{Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[fecha_admision]}))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_I4)(YEAR((DT_DBDATE)fecha_admision) * 10000 + MONTH((DT_DBDATE)fecha_admision) * 100 + DAY((DT_DBDATE)fecha_admision))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de error de columna derivada]"
+                      description="Salida de error de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de columna derivada"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino de OLE DB"
+                  name="Destino de OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[DW].[F_Consulta]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                      errorOrTruncationOperation="Insertar"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de destino de OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Dias_Instancia]"
+                          cachedDataType="i4"
+                          cachedName="Dias_Instancia"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Dias_Instancia]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Dias_Instancia]" />
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Cantidad_Consultas]"
+                          cachedDataType="i4"
+                          cachedName="Cantidad_Consultas"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad_Consultas]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Cantidad_Consultas]" />
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SK_Doctor]"
+                          cachedDataType="i4"
+                          cachedName="SK_Doctor"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_doctor]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Doctor]" />
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SK_Paciente]"
+                          cachedDataType="i4"
+                          cachedName="SK_Paciente"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_paciente]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Paciente]" />
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SK_especialidad]"
+                          cachedDataType="i4"
+                          cachedName="SK_especialidad"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_especialidad]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_especialidad]" />
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SK_Hospital]"
+                          cachedDataType="i4"
+                          cachedName="SK_Hospital"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_hospital]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de entradas coincidentes de búsqueda].Columns[SK_Hospital]" />
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[idT_Calculado]"
+                          cachedDataType="i4"
+                          cachedName="idT_Calculado"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[idT]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de columna derivada].Columns[idT_Calculado]" />
+                        <inputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[monto_facturacion]"
+                          cachedDataType="numeric"
+                          cachedName="monto_facturacion"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Monto_Facturado]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[monto_facturacion]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_doctor]"
+                          dataType="i4"
+                          name="id_doctor" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_paciente]"
+                          dataType="i4"
+                          name="id_paciente" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_especialidad]"
+                          dataType="i4"
+                          name="id_especialidad" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_hospital]"
+                          dataType="i4"
+                          name="id_hospital" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[idT]"
+                          dataType="i4"
+                          name="idT" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Monto_Facturado]"
+                          dataType="numeric"
+                          name="Monto_Facturado"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Dias_Instancia]"
+                          dataType="i4"
+                          name="Dias_Instancia" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad_Consultas]"
+                          dataType="i4"
+                          name="Cantidad_Consultas" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de destino de OLE DB"
+                      synchronousInputId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origen de OLE DB"
+                  name="Origen de OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    doctor_bk,
+    paciente_bk,
+    hospital_bk,
+    especialidad_nombre,
+    fecha_admision,
+    monto_facturacion,
+    Dias_Instancia,
+    Cantidad_Consultas
+FROM Staging.F_Consulta</property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="Asignaciones entre los parámetros del comando SQL y las variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[Alonso\SQLEXPRESS.Clinica_DW]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB]"
+                      name="Salida de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[doctor_bk]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[doctor_bk]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[doctor_bk]"
+                          name="doctor_bk"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[paciente_bk]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[paciente_bk]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[paciente_bk]"
+                          name="paciente_bk"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[hospital_bk]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[hospital_bk]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[hospital_bk]"
+                          name="hospital_bk"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[especialidad_nombre]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[especialidad_nombre]"
+                          length="100"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[especialidad_nombre]"
+                          name="especialidad_nombre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[fecha_admision]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[fecha_admision]"
+                          length="10"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[fecha_admision]"
+                          name="fecha_admision"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[monto_facturacion]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[monto_facturacion]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[monto_facturacion]"
+                          name="monto_facturacion"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Dias_Instancia]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Dias_Instancia]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Dias_Instancia]"
+                          name="Dias_Instancia"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Cantidad_Consultas]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Cantidad_Consultas]"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Cantidad_Consultas]"
+                          name="Cantidad_Consultas"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[doctor_bk]"
+                          dataType="i4"
+                          name="doctor_bk" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[paciente_bk]"
+                          dataType="i4"
+                          name="paciente_bk" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[hospital_bk]"
+                          dataType="i4"
+                          name="hospital_bk" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[especialidad_nombre]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="especialidad_nombre" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[fecha_admision]"
+                          dataType="wstr"
+                          length="10"
+                          name="fecha_admision" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[monto_facturacion]"
+                          dataType="numeric"
+                          name="monto_facturacion"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Dias_Instancia]"
+                          dataType="i4"
+                          name="Dias_Instancia" />
+                        <externalMetadataColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Cantidad_Consultas]"
+                          dataType="i4"
+                          name="Cantidad_Consultas" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[doctor_bk]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[doctor_bk]"
+                          name="doctor_bk" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[paciente_bk]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[paciente_bk]"
+                          name="paciente_bk" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[hospital_bk]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[hospital_bk]"
+                          name="hospital_bk" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[especialidad_nombre]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[especialidad_nombre]"
+                          name="especialidad_nombre" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[fecha_admision]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[fecha_admision]"
+                          name="fecha_admision" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[monto_facturacion]"
+                          dataType="numeric"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[monto_facturacion]"
+                          name="monto_facturacion"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Dias_Instancia]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Dias_Instancia]"
+                          name="Dias_Instancia" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Cantidad_Consultas]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Cantidad_Consultas]"
+                          name="Cantidad_Consultas" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de columna derivada]"
+                  endId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Inputs[Entrada de búsqueda]"
+                  name="Salida de columna derivada"
+                  startId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Outputs[Salida de columna derivada]" />
+                <path
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda]"
+                  endId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Inputs[Entrada de búsqueda]"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  startId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor.Outputs[Salida de entradas coincidentes de búsqueda]" />
+                <path
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda1]"
+                  endId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Inputs[Entrada de búsqueda]"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  startId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente.Outputs[Salida de entradas coincidentes de búsqueda]" />
+                <path
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda2]"
+                  endId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Inputs[Entrada de búsqueda]"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  startId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital.Outputs[Salida de entradas coincidentes de búsqueda]" />
+                <path
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda3]"
+                  endId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Inputs[Entrada de búsqueda]"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  startId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad.Outputs[Salida de entradas coincidentes de búsqueda]" />
+                <path
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda4]"
+                  endId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  startId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda.Outputs[Salida de entradas coincidentes de búsqueda]" />
+                <path
+                  refId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de origen de OLE DB]"
+                  endId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada.Inputs[Entrada de columna derivada]"
+                  name="Salida de origen de OLE DB"
+                  startId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
       <DTS:PrecedenceConstraints>
         <DTS:PrecedenceConstraint
@@ -5852,6 +7202,14 @@ FROM
           DTS:LogicalAnd="True"
           DTS:ObjectName="Restricción 2"
           DTS:To="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FASE 2 - Cargar DW desde Staging.PrecedenceConstraints[Restricción 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{751CF085-A575-4A70-9B9C-192D2F2D48A5}"
+          DTS:From="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 3"
+          DTS:To="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
@@ -5878,27 +7236,27 @@ FROM
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="178,42"
+          Size="177.6,41.6"
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta"
           TopLeft="100.342857903121,362.808823221914" />
         <NodeLayout
-          Size="170,42"
+          Size="169.6,41.6"
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Doctor"
           TopLeft="91.6126991543776,79.7385619514862" />
         <NodeLayout
-          Size="196,42"
+          Size="196,41.6"
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Especialidad"
           TopLeft="92.4063499497177,219.843137024023" />
         <NodeLayout
-          Size="176,42"
+          Size="176,41.6"
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Hospital"
           TopLeft="100.045238854868,290.472221929434" />
         <NodeLayout
-          Size="178,42"
+          Size="177.6,41.6"
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Paciente"
           TopLeft="94.7873023357386,152.718954076324" />
         <NodeLayout
-          Size="170,42"
+          Size="169.6,41.6"
           Id="Package\FASE 1 - Cargar Staging desde OLTP\Truncate All Staging Tables"
           TopLeft="97.9619055170998,15.1633986093961" />
         <EdgeLayout
@@ -6014,36 +7372,44 @@ FROM
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="396,459"
-          Size="396,502"
+          PanelSize="396,459.2"
+          Size="396,502.4"
           Id="Package\FASE 1 - Cargar Staging desde OLTP"
           TopLeft="93.142857690247,54.9934640627144" />
         <NodeLayout
-          Size="179,42"
+          Size="179.2,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor"
           TopLeft="168,29" />
         <NodeLayout
-          Size="187,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Paciente"
-          TopLeft="167,99.3970588310701" />
-        <NodeLayout
-          Size="205,42"
+          Size="204.8,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad"
-          TopLeft="156.75000051888,167.785293916056" />
+          TopLeft="154.75000051888,171.785293916056" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital"
+          TopLeft="160.938775503687,248.815126052335" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Paciente"
+          TopLeft="167,103.39705883107" />
+        <NodeLayout
+          Size="185.6,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta"
+          TopLeft="163,336" />
         <EdgeLayout
           Id="Package\FASE 2 - Cargar DW desde Staging.PrecedenceConstraints[Restricción]"
-          TopLeft="259.1,70.6">
+          TopLeft="259,71">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,28.7970588310701"
+              EndConnector="0,32.3970588310701"
               Start="0,0"
-              End="0,21.2970588310701">
+              End="0,24.8970588310701">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.2970588310701" />
+                    End="0,24.8970588310701" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6054,7 +7420,7 @@ FROM
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FASE 2 - Cargar DW desde Staging.PrecedenceConstraints[Restricción 1]"
-          TopLeft="259.87500025944,141.39705883107">
+          TopLeft="258.87500025944,145.39705883107">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6074,24 +7440,42 @@ FROM
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="185,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital"
-          TopLeft="164,234" />
         <EdgeLayout
           Id="Package\FASE 2 - Cargar DW desde Staging.PrecedenceConstraints[Restricción 2]"
-          TopLeft="257.87500025944,209.785293916056">
+          TopLeft="255.244388011284,213.385293916056">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,24.214706083944"
+              EndConnector="0,35.4298321362791"
               Start="0,0"
-              End="0,16.714706083944">
+              End="0,27.9298321362791">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.714706083944" />
+                    End="0,27.9298321362791" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging.PrecedenceConstraints[Restricción 3]"
+          TopLeft="254.569387751844,290.415126052335">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.5848739476649"
+              Start="0,0"
+              End="0,38.0848739476649">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.0848739476649" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6103,13 +7487,13 @@ FROM
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="495,438"
-          Size="495,481"
+          PanelSize="495.2,438.4"
+          Size="495.2,481.6"
           Id="Package\FASE 2 - Cargar DW desde Staging"
           TopLeft="677.476190370767,59.579738426022" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
-          TopLeft="489.142857690247,303.036601244368">
+          TopLeft="489.142857690247,303.286601244368">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6138,6 +7522,10 @@ FROM
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta\Conversión de datos"
+          TopLeft="417.999993771315,273.999995917082" />
+        <NodeLayout
           Size="163.2,41.6"
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta\Origen de OLE DB"
           TopLeft="409.999993890524,65.9999990165234" />
@@ -6145,6 +7533,10 @@ FROM
           Size="163.2,41.6"
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta\Columna derivada"
           TopLeft="414.999993816018,175.999997377396" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta\Destino de OLE DB"
+          TopLeft="425.999993652105,375.999994397164" />
         <EdgeLayout
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta.Paths[Salida de origen de OLE DB]"
           TopLeft="494.099993853271,107.599999016523">
@@ -6167,10 +7559,30 @@ FROM
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.4,41.6"
-          Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta\Conversión de datos"
-          TopLeft="417.999993771315,273.999995917082" />
+        <EdgeLayout
+          Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta.Paths[Salida de conversión de datos]"
+          TopLeft="507.59999371171,315.599995917082">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.3999984800816"
+              Start="0,0"
+              End="0,52.8999984800816">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.8999984800816" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.4499992400408,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta.Paths[Salida de columna derivada]"
           TopLeft="496.599993816018,217.599997377396">
@@ -6203,34 +7615,6 @@ FROM
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="168,41.6"
-          Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta\Destino de OLE DB"
-          TopLeft="425.999993652105,375.999994397164" />
-        <EdgeLayout
-          Id="Package\FASE 1 - Cargar Staging desde OLTP\DF_Staging_Consulta.Paths[Salida de conversión de datos]"
-          TopLeft="507.59999371171,315.599995917082">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60.3999984800816"
-              Start="0,0"
-              End="0,52.8999984800816">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.8999984800816" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,18.4499992400408,16,16"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6715,31 +8099,31 @@ FROM
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="125,42"
+          Size="124.8,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\Búsqueda"
           TopLeft="469,268" />
         <NodeLayout
-          Size="164,42"
+          Size="164,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\Insertar D_Doctor"
           TopLeft="719,402" />
         <NodeLayout
-          Size="173,42"
+          Size="172.8,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\Origen OLTP Doctor"
           TopLeft="452,44" />
         <NodeLayout
-          Size="206,42"
+          Size="206.4,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\Conversión nombre_doctor"
           TopLeft="104,468" />
         <NodeLayout
-          Size="177,42"
+          Size="176.8,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\Update D_Doctor"
           TopLeft="115,548" />
         <NodeLayout
-          Size="159,42"
+          Size="159.2,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\Actualizar Doctor"
           TopLeft="238,380" />
         <NodeLayout
-          Size="197,42"
+          Size="196.8,41.6"
           Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Doctor\Convertir nombre_doctor"
           TopLeft="448,158" />
         <EdgeLayout
@@ -6983,6 +8367,408 @@ FROM
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Destino de ADO NET"
+          TopLeft="669.821429997302,308.749999729368" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Origen de ADO NET"
+          TopLeft="74.285714443849,19.8823529237488" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Columna derivada"
+          TopLeft="129.285714560929,119.294117542493" />
+        <NodeLayout
+          Size="124,42"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Búsqueda"
+          TopLeft="276.785714874918,316.970587957457" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Conversión de datos"
+          TopLeft="225.714286194772,209.529411581045" />
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad.Paths[Salida de entradas no coincidentes de búsqueda]"
+          TopLeft="400.785714874918,337.770587957457">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="269.035715122384,-8.2205882280889"
+              Start="0,0"
+              End="261.535715122384,-8.2205882280889">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="130.517857561192,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="130.517857561192,0"
+                    Point2="134.517857561192,0"
+                    Point3="134.517857561192,-4" />
+                  <mssgle:LineSegment
+                    End="134.517857561192,-4.2205882280889" />
+                  <mssgle:CubicBezierSegment
+                    Point1="134.517857561192,-4.2205882280889"
+                    Point2="134.517857561192,-8.2205882280889"
+                    Point3="138.517857561192,-8.2205882280889" />
+                  <mssgle:LineSegment
+                    End="261.535715122384,-8.2205882280889" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="18.940845842442,1,231.1540234375,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad.Paths[Salida de conversión de datos]"
+          TopLeft="312.914286194772,251.129411581045">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.8714286801464,65.8411763764121"
+              Start="0,0"
+              End="25.8714286801464,58.3411763764121">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.920588188206" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.920588188206"
+                    Point2="0,32.920588188206"
+                    Point3="4,32.920588188206" />
+                  <mssgle:LineSegment
+                    End="21.8714286801464,32.920588188206" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.8714286801464,32.920588188206"
+                    Point2="25.8714286801464,32.920588188206"
+                    Point3="25.8714286801464,36.920588188206" />
+                  <mssgle:LineSegment
+                    End="25.8714286801464,58.3411763764121" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad.Paths[Salida de columna derivada]"
+          TopLeft="210.885714560929,160.894117542493">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.028571633842,48.6352940385522"
+              Start="0,0"
+              End="102.028571633842,41.1352940385522">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3176470192761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3176470192761"
+                    Point2="0,24.3176470192761"
+                    Point3="4,24.3176470192761" />
+                  <mssgle:LineSegment
+                    End="98.0285716338424,24.3176470192761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98.0285716338424,24.3176470192761"
+                    Point2="102.028571633842,24.3176470192761"
+                    Point3="102.028571633842,28.3176470192761" />
+                  <mssgle:LineSegment
+                    End="102.028571633842,41.1352940385522" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad.Paths[Salida de origen de ADO NET]"
+          TopLeft="160.285714443849,61.4823529237488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.6000001170805,57.8117646187441"
+              Start="0,0"
+              End="50.6000001170805,50.3117646187441">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9058823093721" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.9058823093721"
+                    Point2="0,28.9058823093721"
+                    Point3="4,28.9058823093721" />
+                  <mssgle:LineSegment
+                    End="46.6000001170805,28.9058823093721" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.6000001170805,28.9058823093721"
+                    Point2="50.6000001170805,28.9058823093721"
+                    Point3="50.6000001170805,32.9058823093721" />
+                  <mssgle:LineSegment
+                    End="50.6000001170805,50.3117646187441" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Búsqueda">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[DW].[D_Especialidad]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\División condicional"
+          TopLeft="246,310" />
+        <NodeLayout
+          Size="164,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Origen de OLE DB"
+          TopLeft="493,56" />
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Comando de OLE DB"
+          TopLeft="240,448" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Destino de OLE DB"
+          TopLeft="778,326" />
+        <NodeLayout
+          Size="124.8,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Búsqueda"
+          TopLeft="514,156" />
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital.Paths[Salida de origen de OLE DB]"
+          TopLeft="575.75,98">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital.Paths[Salida de entradas no coincidentes de búsqueda]"
+          TopLeft="576.5,198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="285.5,128"
+              Start="0,0"
+              End="285.5,120.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60"
+                    Point2="0,64"
+                    Point3="4,64" />
+                  <mssgle:LineSegment
+                    End="281.5,64" />
+                  <mssgle:CubicBezierSegment
+                    Point1="281.5,64"
+                    Point2="285.5,64"
+                    Point3="285.5,68" />
+                  <mssgle:LineSegment
+                    End="285.5,120.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="35.8609765625,69,213.778046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital.Paths[Salida de entradas coincidentes de búsqueda]"
+          TopLeft="557,198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-225.5,112"
+              Start="0,0"
+              End="-225.5,104.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.6492890995261" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.6492890995261"
+                    Point2="0,45.6492890995261"
+                    Point3="-4,45.6492890995261" />
+                  <mssgle:LineSegment
+                    End="-221.5,45.6492890995261" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-221.5,45.6492890995261"
+                    Point2="-225.5,45.6492890995261"
+                    Point3="-225.5,49.6492890995261" />
+                  <mssgle:LineSegment
+                    End="-225.5,104.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-212.5690234375,50.6492890995261,199.638046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital.Paths[Actualizar]"
+          TopLeft="330,352">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,96"
+              Start="0,0"
+              End="0,88.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,88.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-22.3267578125,39.37548828125,44.653515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="8"
+          ParentId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital"
+          FontInfo="{assembly:Null}"
+          Size="35.2,40"
+          Id="1d3859c2-c893-491b-a716-2a937a6baa0e"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Origen de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Búsqueda">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[DW].[D_Hospital]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
     design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Paciente">
     <LayoutInfo>
       <GraphLayout
@@ -7220,173 +9006,211 @@ FROM
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad">
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="176,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Destino de ADO NET"
-          TopLeft="669.821429997302,308.749999729368" />
+          Size="164,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB"
+          TopLeft="68.7142848217365,23.5294117975503" />
         <NodeLayout
-          Size="172,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Origen de ADO NET"
-          TopLeft="74.285714443849,19.8823529237488" />
-        <NodeLayout
-          Size="163,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Columna derivada"
-          TopLeft="129.285714560929,119.294117542493" />
-        <NodeLayout
-          Size="124,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Búsqueda"
-          TopLeft="276.785714874918,316.970587957457" />
-        <NodeLayout
-          Size="174,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Conversión de datos"
-          TopLeft="225.714286194772,209.529411581045" />
+          Size="163.2,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Columna derivada"
+          TopLeft="65.0000001383678,104.764705790523" />
         <EdgeLayout
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad.Paths[Salida de entradas no coincidentes de búsqueda]"
-          TopLeft="400.785714874918,337.770587957457">
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de origen de OLE DB]"
+          TopLeft="148.657142480052,65.1294117975503">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="269.035715122384,-8.2205882280889"
+              EndConnector="0,39.6352939929723"
               Start="0,0"
-              End="261.535715122384,-8.2205882280889">
+              End="0,32.1352939929723">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="130.517857561192,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="130.517857561192,0"
-                    Point2="134.517857561192,0"
-                    Point3="134.517857561192,-4" />
+                    End="0,32.1352939929723" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor"
+          TopLeft="75.7142858754617,179.705882195422" />
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de columna derivada]"
+          TopLeft="147.157143006915,146.364705790523">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.3411764048994"
+              Start="0,0"
+              End="0,25.8411764048994">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="134.517857561192,-4.2205882280889" />
-                  <mssgle:CubicBezierSegment
-                    Point1="134.517857561192,-4.2205882280889"
-                    Point2="134.517857561192,-8.2205882280889"
-                    Point3="138.517857561192,-8.2205882280889" />
+                    End="0,25.8411764048994" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente"
+          TopLeft="75.7142858754616,274.52941152407" />
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda]"
+          TopLeft="149.914285875462,221.305882195422">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.2235293286482"
+              Start="0,0"
+              End="0,45.7235293286482">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="261.535715122384,-8.2205882280889" />
+                    End="0,45.7235293286482" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="18.940845842442,1,231.1540234375,16"
+              BoundingBox="-99.8190234375,16.7641084143241,199.638046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital"
+          TopLeft="84.2857144651364,356.352940864113" />
         <EdgeLayout
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad.Paths[Salida de conversión de datos]"
-          TopLeft="312.914286194772,251.129411581045">
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda1]"
+          TopLeft="155.800000170299,316.12941152407">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="25.8714286801464,65.8411763764121"
+              EndConnector="0,40.2235293400432"
               Start="0,0"
-              End="25.8714286801464,58.3411763764121">
+              End="0,32.7235293400432">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.920588188206" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,28.920588188206"
-                    Point2="0,32.920588188206"
-                    Point3="4,32.920588188206" />
-                  <mssgle:LineSegment
-                    End="21.8714286801464,32.920588188206" />
-                  <mssgle:CubicBezierSegment
-                    Point1="21.8714286801464,32.920588188206"
-                    Point2="25.8714286801464,32.920588188206"
-                    Point3="25.8714286801464,36.920588188206" />
-                  <mssgle:LineSegment
-                    End="25.8714286801464,58.3411763764121" />
+                    End="0,32.7235293400432" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8190234375,10.2641084200216,199.638046875,12.1953125"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad"
+          TopLeft="285.714286322496,355.588234982431" />
         <EdgeLayout
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad.Paths[Salida de columna derivada]"
-          TopLeft="210.885714560929,160.894117542493">
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda2]"
+          TopLeft="234.685714465136,376.770587923272">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="102.028571633842,48.6352940385522"
+              EndConnector="51.0285718573601,0"
               Start="0,0"
-              End="102.028571633842,41.1352940385522">
+              End="43.5285718573601,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.3176470192761" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3176470192761"
-                    Point2="0,24.3176470192761"
-                    Point3="4,24.3176470192761" />
-                  <mssgle:LineSegment
-                    End="98.0285716338424,24.3176470192761" />
-                  <mssgle:CubicBezierSegment
-                    Point1="98.0285716338424,24.3176470192761"
-                    Point2="102.028571633842,24.3176470192761"
-                    Point3="102.028571633842,28.3176470192761" />
-                  <mssgle:LineSegment
-                    End="102.028571633842,41.1352940385522" />
+                    End="43.5285718573601,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-78.05473750882,5,199.638046875,12.1953125"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="124,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda"
+          TopLeft="304.285714933459,445.0588231393" />
         <EdgeLayout
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad.Paths[Salida de origen de ADO NET]"
-          TopLeft="160.285714443849,61.4823529237488">
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda3]"
+          TopLeft="368.600000627978,397.188234982431">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="50.6000001170805,57.8117646187441"
+              EndConnector="0,47.8705881568696"
               Start="0,0"
-              End="50.6000001170805,50.3117646187441">
+              End="0,40.3705881568696">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.9058823093721" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,24.9058823093721"
-                    Point2="0,28.9058823093721"
-                    Point3="4,28.9058823093721" />
-                  <mssgle:LineSegment
-                    End="46.6000001170805,28.9058823093721" />
-                  <mssgle:CubicBezierSegment
-                    Point1="46.6000001170805,28.9058823093721"
-                    Point2="50.6000001170805,28.9058823093721"
-                    Point3="50.6000001170805,32.9058823093721" />
-                  <mssgle:LineSegment
-                    End="50.6000001170805,50.3117646187441" />
+                    End="0,40.3705881568696" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8190234375,14.0876378284348,199.638046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB"
+          TopLeft="520.000001106944,440.599999646755" />
+        <EdgeLayout
+          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta.Paths[Salida de entradas coincidentes de búsqueda4]"
+          TopLeft="428.285714933459,463.629411393028">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.7142861734849,0"
+              Start="0,0"
+              End="84.2142861734849,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="84.2142861734849,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-57.7118803507576,5,199.638046875,12.1953125"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Origen de ADO NET">
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Origen de OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -7394,22 +9218,22 @@ FROM
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Búsqueda">
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Doctor">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[DW].[D_Especialidad]</Value>
+          type="q3:string">[DW].[D_Doctor]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -7417,176 +9241,30 @@ FROM
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Especialidad\Destino de ADO NET">
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Paciente">
     <Properties>
       <Property>
-        <Name>DataSourceViewID</Name>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
       </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="164,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Origen de OLE DB"
-          TopLeft="493,56" />
-        <NodeLayout
-          Size="125,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Búsqueda"
-          TopLeft="514,156" />
-        <EdgeLayout
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital.Paths[Salida de origen de OLE DB]"
-          TopLeft="575.75,98">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,58"
-              Start="0,0"
-              End="0,50.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,50.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <AnnotationLayout
-          Text="8"
-          ParentId="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital"
-          FontInfo="{assembly:Null}"
-          Size="35,60"
-          Id="1d3859c2-c893-491b-a716-2a937a6baa0e"
-          TopLeft="5.5,5.5" />
-        <NodeLayout
-          Size="168,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Destino de OLE DB"
-          TopLeft="778,326" />
-        <EdgeLayout
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital.Paths[Salida de entradas no coincidentes de búsqueda]"
-          TopLeft="576.5,198">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="285.5,128"
-              Start="0,0"
-              End="285.5,120.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,60" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,60"
-                    Point2="0,64"
-                    Point3="4,64" />
-                  <mssgle:LineSegment
-                    End="281.5,64" />
-                  <mssgle:CubicBezierSegment
-                    Point1="281.5,64"
-                    Point2="285.5,64"
-                    Point3="285.5,68" />
-                  <mssgle:LineSegment
-                    End="285.5,120.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="35.8609765625,69,213.778046875,12.1953125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="171,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\División condicional"
-          TopLeft="246,310" />
-        <EdgeLayout
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital.Paths[Salida de entradas coincidentes de búsqueda]"
-          TopLeft="557,198">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-225.5,112"
-              Start="0,0"
-              End="-225.5,104.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,41.6492890995261" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,41.6492890995261"
-                    Point2="0,45.6492890995261"
-                    Point3="-4,45.6492890995261" />
-                  <mssgle:LineSegment
-                    End="-221.5,45.6492890995261" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-221.5,45.6492890995261"
-                    Point2="-225.5,45.6492890995261"
-                    Point3="-225.5,49.6492890995261" />
-                  <mssgle:LineSegment
-                    End="-225.5,104.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-212.5690234375,50.6492890995261,199.638046875,12.1953125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="177,42"
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Comando de OLE DB"
-          TopLeft="240,448" />
-        <EdgeLayout
-          Id="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital.Paths[Actualizar]"
-          TopLeft="330,352">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,96"
-              Start="0,0"
-              End="0,88.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,88.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-22.3267578125,39.37548828125,44.653515625,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Origen de OLE DB">
-    <Properties>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[DW].[D_Paciente]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Búsqueda">
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Hospital">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -7609,7 +9287,53 @@ FROM
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_D_Hospital\Destino de OLE DB">
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Buscar Especialidad">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[DW].[D_Especialidad]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Búsqueda">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[DW].[D_Tiempo]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FASE 2 - Cargar DW desde Staging\DF_Cargar_F_Consulta\Destino de OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
